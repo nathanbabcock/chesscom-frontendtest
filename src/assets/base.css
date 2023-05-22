@@ -1,5 +1,6 @@
 :root {
   --sidebar-size: 250px;
+  --vue-green: hsla(160, 100%, 37%, 1);
 }
 
 /* color palette from <https://github.com/vuejs/theme> */

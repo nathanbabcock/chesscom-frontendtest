@@ -1,20 +1,38 @@
-<script setup lang="ts">
+<script lang="ts">
 const RANKS = '12345678'.split('')
 const FILES = 'ABCDEFGH'.split('')
 
-function selectSquare(n: number): void {
+function getLabel(n: number): string {
   const rankIndex = RANKS.length - Math.floor(n / 8) - 1
   const fileIndex = n % 8
   const label = `${FILES[fileIndex]}${RANKS[rankIndex]}`
-  console.log(label)
+  return label
 }
 
+export default {
+  data() {
+    return {
+      selectedSquare: undefined as number | undefined
+    }
+  },
+  methods: {
+    selectSquare(n?: number) {
+      this.selectedSquare = n
+      if (n === undefined) return
+      console.log(getLabel(n))
+    }
+  }
+}
 </script>
 
 <template>
   <div class="board-container">
     <div class="board">
-      <div class="square" v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)" />
+      <div
+        v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)"
+        class="square"
+        :class="{ selected: i === selectedSquare}"
+        />
     </div>
   </div>
 </template>
@@ -46,6 +64,10 @@ function selectSquare(n: number): void {
 
 .square {
   border: 1px solid white;
+}
+
+.selected {
+  background-color: var(--vue-green) !important;
 }
 
 /**
