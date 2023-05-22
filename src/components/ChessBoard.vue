@@ -1,14 +1,10 @@
+<script setup lang="ts">
+defineProps<{
+  addSelectedSquare: (n: number) => void
+}>()
+</script>
+
 <script lang="ts">
-const RANKS = '12345678'.split('')
-const FILES = 'ABCDEFGH'.split('')
-
-function getLabel(n: number): string {
-  const rankIndex = RANKS.length - Math.floor(n / 8) - 1
-  const fileIndex = n % 8
-  const label = `${FILES[fileIndex]}${RANKS[rankIndex]}`
-  return label
-}
-
 export default {
   data() {
     return {
@@ -19,7 +15,7 @@ export default {
     selectSquare(n?: number) {
       this.selectedSquare = n
       if (n === undefined) return
-      console.log(getLabel(n))
+      this.addSelectedSquare(n)
     }
   }
 }
@@ -29,10 +25,12 @@ export default {
   <div class="board-container">
     <div class="board">
       <div
-        v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)"
+        v-for="(_, i) in Array(64)"
+        v-bind:key="i"
+        v-on:click="selectSquare(i)"
         class="square"
-        :class="{ selected: i === selectedSquare}"
-        />
+        :class="{ selected: i === selectedSquare }"
+      />
     </div>
   </div>
 </template>
