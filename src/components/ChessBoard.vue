@@ -1,6 +1,19 @@
+<script setup lang="ts">
+const RANKS = '12345678'.split('')
+const FILES = 'ABCDEFGH'.split('')
+
+function selectSquare(n: number): void {
+  const rankIndex = RANKS.length - Math.floor(n / 8) - 1
+  const fileIndex = n % 8
+  const label = `${FILES[fileIndex]}${RANKS[rankIndex]}`
+  console.log(label)
+}
+
+</script>
+
 <template>
   <div class="board">
-    <div class="square" v-for="i in Array(64)" v-bind:key="i" />
+    <div class="square" v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)" />
   </div>
 </template>
 
@@ -13,14 +26,19 @@
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
-  margin: 30px;
 }
 
 .square {
   border: 1px solid white;
+}
 
-  /* https://caniuse.com/mdn-css_properties_aspect-ratio */
-  /* ⚠ May not work in older browsers */
+/**
+ * Enforce a square aspect ratio.
+ * ⚠ May not work in older browsers: https://caniuse.com/mdn-css_properties_aspect-ratio
+ * In a production-facing app this should be replaced with a backwards-compatible solution.
+ */
+.board,
+.square {
   aspect-ratio: 1;
 }
 
