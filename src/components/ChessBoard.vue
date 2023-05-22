@@ -25,7 +25,9 @@ function selectSquare(n: number): void {
   border: 3px solid white;
   border-radius: 5px;
   overflow: hidden;
-  width: 100%;
+  margin: 2em;
+  width: calc(100vmin - 4em);
+  height: calc(100vmin - 4em);
 }
 
 .square {

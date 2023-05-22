@@ -1,11 +1,11 @@
 @import './base.css';
 
 #app {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
   font-weight: normal;
 }
 
@@ -28,9 +28,9 @@ a,
     place-items: center;
   }
 
-  #app {
+  /* #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
-  }
+  } */
 }
