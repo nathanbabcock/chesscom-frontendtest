@@ -12,22 +12,36 @@ function selectSquare(n: number): void {
 </script>
 
 <template>
-  <div class="board">
-    <div class="square" v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)" />
+  <div class="board-container">
+    <div class="board">
+      <div class="square" v-for="(_, i) in Array(64)" v-bind:key="i" v-on:click="selectSquare(i)" />
+    </div>
   </div>
 </template>
 
 <style scoped>
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .board {
+  --board-margin: 2em;
+  --long-side: calc(100vmax - var(--sidebar-size) - var(--board-margin) * 2);
+  --short-side: calc(100vmin - var(--board-margin) * 2);
+  --board-size: min(var(--long-side), var(--short-side));
+  width: var(--board-size);
+  height: var(--board-size);
+  margin: var(--board-margin);
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
   border: 3px solid white;
   border-radius: 5px;
   overflow: hidden;
-  margin: 2em;
-  width: calc(100vmin - 4em);
-  height: calc(100vmin - 4em);
 }
 
 .square {
