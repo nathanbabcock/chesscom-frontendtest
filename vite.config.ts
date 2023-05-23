@@ -12,6 +12,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+
+  // Config for Github Pages
+  base: '/chesscom-frontendtest',
   build: {
     outDir: 'docs'
   }
